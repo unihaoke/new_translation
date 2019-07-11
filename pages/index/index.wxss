@@ -1,0 +1,105 @@
+/**index.wxss**/
+/**index.wxss**/
+.container {
+ height: 350rpx; 
+}
+.searchbar-result{
+    margin-top: 0;
+    font-size: 14px;
+}
+.searchbar-result:before{
+    display: none;
+}
+.weui-cell{
+    padding: 12px 15px 12px 35px;
+}
+.weui-panel {
+    margin-top: -1px;
+}
+.weui-cell__hd > .data {
+  text-align: center;
+  margin-left: -20px;
+  margin-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-right: 0px solid #7292C7;
+}
+.data .num_l, .data .num_r, .data .sep {
+  font-size: 24px;
+  text-align: center;
+}
+.num_l {
+  color: #7292C7;
+}
+.num_r {
+  color: #DA4A3B;
+}
+.sep {
+  padding: 5px;
+}
+.date {
+  font-size: 16px;
+  padding-top: -20px;
+}
+.weui-media-box {
+  padding: 2px;
+}
+.weui-media-box__title {
+  font-size: 16px;
+  margin-bottom: 3px;
+}
+.weui-media-box__desc {
+  font-size: 13px;
+}
+.information{
+   height: 280rpx; 
+   font-size: 16px;
+   padding-top: -20px;
+}
+.icon{
+  width: 35rpx;
+  height: 35rpx;
+}
+.item-font{
+  font-size: 25rpx;
+  color: rgba(0, 0, 0, 0.5);
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.item-container{
+  margin: 20rpx 30rpx 20rpx 30rpx;
+  padding: 20rpx;
+  border: 1px rgba(135, 206, 235, 0.8) solid;
+  border-radius:10px;
+  background-color: rgba(205, 179, 139, 0.1)
+}
+.item-title{
+  font-size: 30rpx;
+  color: rgba(0, 0, 0, 0.8);
+  margin-left: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+.item-text{
+  margin-left: 5px;
+}
+
+.item-line{
+  margin-left: -10px;
+  margin-top: -5px;
+}
+.item-f{
+  font-size: 25rpx;
+  
+}
+
+
+
+
+
+
+
+
+
+

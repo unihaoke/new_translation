@@ -1,0 +1,80 @@
+
+
+
+  <scroll-view class="page" scroll-y="true"  bindscrolltolower="onLower" bindscroll="onScroll" style="height:{{windowHeight}}px;" >
+
+<van-tabs active="{{ active }}" sticky bind:change="onChange">
+  <van-tab title="全部"></van-tab>
+  <van-tab title="计算机"></van-tab>
+  <van-tab title="金融"></van-tab>
+  <van-tab title="其他"></van-tab>       
+</van-tabs>
+
+   
+          <navigator url="/pages/translation/translation?content={{conf.content}}&describe={{conf.describe}}&language={{conf.language}}&territory={{conf.territory}}&deadline={{conf.deadline}}&title={{conf.title}}&subpackageid={{conf.id}}&count={{conf.count}}&section={{conf.section}}&taskid={{conf.taskid}}" wx:for="{{conferences}}" wx:for-item="conf" wx:key="enName" hover-class="weui-cell_active" >
+         
+       <block >
+<view class='item-container'>
+
+
+              <view class=" item-title">{{conf.title}}</view>
+            
+              <view class='item-font'>
+              <image class='icon' src='/pages/imge/index.png'></image>
+              <p class='item-text'>翻译详情：</p>
+              <p class='item-text'>{{conf.language}}、{{conf.territory}}</p>
+              </view>
+
+<view class='item-font'>
+              <image class='icon' src='/pages/imge/index.png'></image>
+              <p class='item-text'>翻译字数：</p>
+              <p class='item-text'>{{conf.content.length}}</p>
+              </view>
+
+<view class='item-font'>
+              <image class='icon' src='/pages/imge/index.png'></image>
+              <p class='item-text'>剩余：</p>
+              <p class='item-text'>{{conf.count}}</p>
+              </view>
+<view class='item-font'>
+              <image class='icon' src='/pages/imge/index.png'></image>
+              <p class='item-text'>截止时间：</p>
+              <p class='item-text'>{{conf.deadline}}</p>
+              </view>
+
+
+    
+<view class='weui-panel__hd item-line'></view>
+              <view class="weui-media-box__info">
+
+                <view class="weui-media-box__info__meta item-f" wx:if="{{conf.status==0}}">未完成</view>
+                 <view class="weui-media-box__info__meta item-f" wx:if="{{conf.status==1}}">完成</view>
+                  <view class="weui-media-box__info__meta item-f" wx:if="{{conf.status==-1}}">已过期</view>
+              </view>
+
+
+</view>
+            </block>
+          </navigator>
+        
+     
+
+
+<view class="weui-loadmore" wx:if="{{showMore}}">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载</view>
+        </view>
+         <view class="weui-loadmore weui-loadmore_line" wx:if="{{isEnd}}">
+            <view class="weui-loadmore__tips weui-loadmore__tips_in-line">我也是有底线的</view>
+        </view>    
+  </scroll-view>
+
+
+
+
+
+
+
+
+
+

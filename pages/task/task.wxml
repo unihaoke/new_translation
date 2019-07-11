@@ -1,0 +1,64 @@
+<van-nav-bar
+  title="任务"
+  right-text="发布"
+  bind:click-right="onClickRight"
+/>
+<van-tabs active="{{ active }}" bind:click="onChange">
+  <van-tab title="我发布的"></van-tab>
+  <van-tab title="我接受的"></van-tab>
+</van-tabs>
+
+ <scroll-view class="page" scroll-y="true"  bindscrolltoupper="onUpper" bindscrolltolower="onLower" >
+   
+          <navigator url="/pages/task/task_content?content={{conf.rewardInformation}}" wx:for="{{conferences}}" wx:for-item="conf" wx:key="enName" hover-class="weui-cell_active" >
+         
+       <block >
+<view class='item-container'>
+
+
+              <view class=" item-title">{{conf.title}}</view>
+            
+              <view class='item-font'>
+              <image class='icon' src='/pages/imge/index.png'></image>
+              <p class='item-text'>翻译详情：</p>
+              <p class='item-text'>{{conf.language}}、{{conf.territory}}</p>
+              </view>
+
+<view class='item-font'>
+              <image class='icon' src='/pages/imge/index.png'></image>
+              <p class='item-text'>翻译字数：</p>
+              <p class='item-text'>{{conf.content.length}}</p>
+              </view>
+
+<view class='item-font'>
+              <image class='icon' src='/pages/imge/index.png'></image>
+              <p class='item-text'>剩余：</p>
+              <p class='item-text'>{{conf.count}}</p>
+              </view>
+<view class='item-font'>
+              <image class='icon' src='/pages/imge/index.png'></image>
+              <p class='item-text'>截止时间：</p>
+              <p class='item-text'>{{conf.deadline}}</p>
+              </view>
+
+
+    
+<view class='weui-panel__hd item-line'></view>
+              <view class="weui-media-box__info">
+
+                <view class="weui-media-box__info__meta item-f" wx:if="{{conf.status==0}}">未完成</view>
+                 <view class="weui-media-box__info__meta item-f" wx:if="{{conf.status==1}}">完成</view>
+                  <view class="weui-media-box__info__meta item-f" wx:if="{{conf.status==-1}}">已过期</view>
+              </view>
+
+
+</view>
+            </block>
+          </navigator>
+        
+     
+ <view class="weui-loadmore weui-loadmore_line" wx:if="{{isEnd}}">
+            <view class="weui-loadmore__tips weui-loadmore__tips_in-line">我也是有底线的</view>
+        </view>   
+    
+  </scroll-view>

@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/start/start",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/task/task",
+    "pages/mine/mine",
+    "pages/translation/translation",
+    "pages/task/task_content"
+  ],
+  "usingComponents": {
+    "van-tab": "/dist/tab/index",
+    "van-tabs": "/dist/tabs/index",
+    "van-nav-bar": "/dist/nav-bar/index",
+    "van-collapse": "/dist/collapse/index",
+    "van-collapse-item": "/dist/collapse-item/index"
+  },
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "众包翻译",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#1296db",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "pages/imge/index.png",
+        "selectedIconPath": "pages/imge/index_highlight.png"
+      },
+      {
+        "pagePath": "pages/task/task",
+        "text": "任务",
+        "iconPath": "pages/imge/task.png",
+        "selectedIconPath": "pages/imge/task_highlight.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "pages/imge/mine.png",
+        "selectedIconPath": "pages/imge/mine_highlight.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,172 @@
+<!--pages/translation/translation.wxml-->
+
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+
+<view class="weui-cells__title" >任务信息</view>
+
+<!-- <van-collapse value="{{ activeName }}" bind:change="onChange" accordion>
+ 
+  <van-collapse-item title="任务详情" icon="newspaper-o" name="1" >
+    提供多样店铺模板，快速搭建网上商城
+  </van-collapse-item>
+  
+</van-collapse> -->
+
+
+   <view class="weui-cells weui-cells_after-title">
+
+<view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
+                </view>
+                <view class="weui-cell__bd">标题：</view>
+                <view class="weui-cell__ft item-text">{{title}}</view>
+            </view>
+
+   <view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
+                </view>
+                <view class="weui-cell__bd">翻译概述：</view>
+                <view class="weui-cell__ft item-text">{{describe}}</view>
+            </view>
+           
+            <view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
+                </view>
+                <view class="weui-cell__bd">翻译人员：</view>
+                <view class="weui-cell__ft item-text">{{userInfo.nickName}}</view>
+            </view>
+
+            <view class="weui-cell">
+                <view class="weui-cell__hd">
+                     <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
+                </view>
+                <view class="weui-cell__bd">翻译详情：</view>
+                <view class="weui-cell__ft item-text">{{language}}、{{territory}}</view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
+                </view>
+                <view class="weui-cell__bd">翻译字数：</view>
+                <view class="weui-cell__ft item-text">{{count}}</view>
+            </view>
+<view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
+                </view>
+                <view class="weui-cell__bd">截止时间：</view>
+                <view class="weui-cell__ft item-text">{{deadline}}</view>
+            </view>
+        </view>
+
+
+<van-collapse value="{{ activeName }}" bind:change="onChange">
+ 
+  <van-collapse-item title="查看上文" name="2">
+    {{context}}
+  </van-collapse-item>
+  
+</van-collapse>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <view class="weui-cells__title">原文</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">{{content}}</view>
+      </view>
+      <view class="weui-cell">
+        <!--view class="weui-cell__bd">添加更多</view-->
+        <button class="weui-btn mini-btn" type="default" size="mini">
+          机器辅助翻译
+        </button>
+      </view>
+    </view>
+
+
+
+
+
+
+    <view class="weui-cells__title">译文</view>
+    <view >
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <textarea class="weui-textarea" placeholder="请输入译文" style="height: 9.3em" maxlength="100000" bindinput="userInput" />
+            <view class="weui-textarea-counter"></view>
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" bindtap="submit">提交</button>
+      </view>
+    </view>
+
+
+
+
+ 
+
+
+    <view wx:if="{{is_Submission == 1}}">
+      <navigator url="" wx:for="{{translations}}" wx:for-item="conf" wx:key="enName" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-panel weui-panel_access">
+          <view class="weui-panel__bd">
+            <view class="weui-media-box ">
+              <view class="weui-media-box__title weui-media-box__title_in-text" style='color:#669933'>{{conf.userName}}</view>
+              <scroll-view class="container" scroll-y="true">
+                <view class="weui-form-preview__value">{{conf.translation}}</view>
+              </scroll-view>
+
+              <van-button size="small" type="danger" style='float: right;margin-top:15px;margin-bottom:15px'>采纳</van-button>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </view>
+</view>
