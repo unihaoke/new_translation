@@ -6,14 +6,18 @@
     "pages/task/task",
     "pages/mine/mine",
     "pages/translation/translation",
-    "pages/task/task_content"
+    "pages/task/task_content",
+    "pages/task/post"
   ],
   "usingComponents": {
     "van-tab": "/dist/tab/index",
     "van-tabs": "/dist/tabs/index",
     "van-nav-bar": "/dist/nav-bar/index",
     "van-collapse": "/dist/collapse/index",
-    "van-collapse-item": "/dist/collapse-item/index"
+    "van-collapse-item": "/dist/collapse-item/index",
+    "van-area": "/dist/area/index",
+    "van-popup": "/dist/popup/index",
+    "van-datetime-picker": "/dist/datetime-picker/index"
   },
   "window": {
     "backgroundTextStyle": "dark",

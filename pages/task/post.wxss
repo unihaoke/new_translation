@@ -1,0 +1,9 @@
+/* pages/task/post.wxss */
+.txt_overflow{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.txt_one{
+  white-space:nowrap;
+}

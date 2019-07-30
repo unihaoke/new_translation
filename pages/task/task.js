@@ -105,10 +105,15 @@ Page({
     var userId = app.globalData.userId;
     var url = 'http://127.0.0.1:8080/translation/' + userId;
     if (event.detail.index ==0){
-      url = 'http://127.0.0.1:8080/translation/' + userId;
+      url = 'http://127.0.0.1:8080/task/' + userId;
     }
     that.loadConferences(url);
 
   },
 
+  onClickRight:function(event){
+    wx.navigateTo({
+      url: '/pages/task/post',
+    })
+  }
 })

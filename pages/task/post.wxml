@@ -1,0 +1,105 @@
+<!--pages/task/post.wxml-->
+<view class="page">
+  <view class="weui-cells weui-cells_after-title">
+
+    <view class="weui-cell">
+      <view class="weui-cell__hd">
+       <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
+      </view>
+      <view class="weui-cell__bd">标     题：</view>
+      <!-- <view class="weui-cell__ft item-text">{{title}}</view> -->
+      <input maxlength="20" placeholder="请输入标题" bindinput="titleInput" />
+    </view>
+
+    <view class="weui-cell">
+      <view class="weui-cell__hd">
+        <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
+      </view>
+      <view class="weui-cell__bd">翻译详情：</view>
+
+
+      <picker mode="multiSelector" bindchange="bindMultiPickerChange2"  value="{{multiIndex}}" range="{{objectMultiArray}}" range-key="{{'name'}}">
+        <view class="picker">
+          {{objectMultiArray[0][multiIndex2[0]].name}}、{{objectMultiArray[1][multiIndex2[1]].name}}
+        </view>
+      </picker>
+
+
+    </view>
+
+
+
+    <view class="weui-cell">
+      <view class="weui-cell__hd">
+        <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
+      </view>
+      <view class="weui-cell__bd">截止时间：</view>
+      <view class="weui-cell__ft item-text" bindtap="selectType">{{ subdate }}</view>
+       <van-popup show="{{ show }}" position="bottom" overlay="{{ false }}" bind:close="onClose">
+        <van-datetime-picker type="datetime" value="{{ currentDate }}" min-date="{{ minDate }}" max-date="{{ maxDate }}" bind:input="onInput" bind:confirm="confirm" bind:cancel="cancel" />
+      </van-popup>
+    </view>
+  </view>
+
+
+
+ <view class="weui-cell">
+      <view class="weui-cell__hd">
+       <image style="margin-left: 3px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/upload.png' bindtap="upLoadAction"></image>
+      </view>
+      <view class="weui-cell__bd txt_one">上传文件：</view>
+      <view class="weui-cell__ft item-text txt_overflow" >{{filename}}</view>
+    </view>
+
+
+
+
+
+
+
+  <view class="weui-cell">
+      <view class="weui-cell__hd">
+        <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
+      </view>
+      <view class="weui-cell__bd">翻译描述：</view>
+      <!-- <input maxlength="20" placeholder="请输入描述" /> -->
+    </view>
+
+
+<view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                   <textarea class="weui-textarea" placeholder="请输入描述" style="height: 7.3em" maxlength="500" bindinput="textInput" />
+                    
+                </view>
+            </view>
+        </view>
+
+
+
+
+  
+
+
+
+ 
+
+
+  <checkbox-group bindchange="bindAgreeChange">
+    <label class="weui-agree" for="weuiAgree">
+      <view class="weui-agree__text">
+        <checkbox class="weui-agree__checkbox" id="weuiAgree" value="agree" checked="{{isAgree}}" />
+        <view class="weui-agree__checkbox-icon">
+          <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{isAgree}}"></icon>
+        </view>
+        阅读并同意
+        <navigator url="" class="weui-agree__link">《相关条款》</navigator>
+      </view>
+    </label>
+  </checkbox-group>
+
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="submit">提交</button>
+  </view>
+
+</view>
