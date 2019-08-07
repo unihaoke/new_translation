@@ -6,15 +6,6 @@
 
 <view class="weui-cells__title" >任务信息</view>
 
-<!-- <van-collapse value="{{ activeName }}" bind:change="onChange" accordion>
- 
-  <van-collapse-item title="任务详情" icon="newspaper-o" name="1" >
-    提供多样店铺模板，快速搭建网上商城
-  </van-collapse-item>
-  
-</van-collapse> -->
-
-
    <view class="weui-cells weui-cells_after-title">
 
 <view class="weui-cell">
@@ -22,7 +13,7 @@
                     <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
                 </view>
                 <view class="weui-cell__bd">标题：</view>
-                <view class="weui-cell__ft item-text">{{title}}</view>
+                <view class="weui-cell__ft item-text">{{translations.title}}</view>
             </view>
 
    <view class="weui-cell">
@@ -30,7 +21,7 @@
                     <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
                 </view>
                 <view class="weui-cell__bd">翻译概述：</view>
-                <view class="weui-cell__ft item-text">{{describe}}</view>
+                <view class="weui-cell__ft item-text">{{translations.t_describe}}</view>
             </view>
            
             <view class="weui-cell">
@@ -38,7 +29,8 @@
                     <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
                 </view>
                 <view class="weui-cell__bd">翻译人员：</view>
-                <view class="weui-cell__ft item-text">{{userInfo.nickName}}</view>
+                <view class="weui-cell__ft item-text" wx:if="{{username == null}}">{{userInfo.nickName}}</view>
+                <view class="weui-cell__ft item-text" wx:else>{{username}}</view>
             </view>
 
             <view class="weui-cell">
@@ -46,21 +38,21 @@
                      <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
                 </view>
                 <view class="weui-cell__bd">翻译详情：</view>
-                <view class="weui-cell__ft item-text">{{language}}、{{territory}}</view>
+                <view class="weui-cell__ft item-text">{{translations.t_language}}、{{translations.territory}}</view>
             </view>
             <view class="weui-cell">
                 <view class="weui-cell__hd">
                     <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
                 </view>
                 <view class="weui-cell__bd">翻译字数：</view>
-                <view class="weui-cell__ft item-text">{{count}}</view>
+                <view class="weui-cell__ft item-text">{{translations.text_length}}</view>
             </view>
 <view class="weui-cell">
                 <view class="weui-cell__hd">
                     <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
                 </view>
                 <view class="weui-cell__bd">截止时间：</view>
-                <view class="weui-cell__ft item-text">{{deadline}}</view>
+                <view class="weui-cell__ft item-text">{{translations.deadline}}</view>
             </view>
         </view>
 
@@ -89,13 +81,14 @@
     <view class="weui-cells__title">原文</view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
-        <view class="weui-cell__bd">{{content}}</view>
+        <view class="weui-cell__bd">{{translations.content}}</view>
       </view>
       <view class="weui-cell">
         <!--view class="weui-cell__bd">添加更多</view-->
-        <button class="weui-btn mini-btn" type="default" size="mini">
+        <button class="weui-btn mini-btn" type="default" size="mini" bindtap="auxiliaryTranslate">
           机器辅助翻译
         </button>
+    <view class="weui-cell__bd">{{trans}}</view>
       </view>
     </view>
 
@@ -136,7 +129,7 @@
                 <view class="weui-form-preview__value">{{conf.translation}}</view>
               </scroll-view>
 
-              <van-button size="small" type="danger" style='float: right;margin-top:15px;margin-bottom:15px'>采纳</van-button>
+             
             </view>
           </view>
         </view>

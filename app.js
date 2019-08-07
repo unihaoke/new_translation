@@ -1,16 +1,16 @@
 //app.js
 App({
   onLaunch: function () {
+    var that = this;
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
     // 登录
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        var that = this;
+        // var that = this;
         var code = res.code; //登录凭证
         if (code) {
           //3.请求自己的服务器，解密用户信息 获取unionId等加密信息
@@ -26,6 +26,7 @@ App({
               if (data.data.code == 20000) {
                 console.log("用户id！" + data.data.data);
                 that.globalData.userId = data.data.data
+                that.usermessage(data.data.data);
                 if (that.employIdCallback) {
                   that.employIdCallback(data.data.data);
                 }
@@ -38,7 +39,6 @@ App({
             }
           })
         }
-
         else {
           console.log('获取用户登录态失败！' + r.errMsg)
         }
@@ -63,10 +63,39 @@ App({
           })
         }
       }
+    });
+  },
+  usermessage: function (userId) {
+    var that = this;
+    wx.request({
+      url: 'http://localhost:8080/user/' + userId,
+      method: 'GET',
+      data: {},
+      success: function (res) {
+        var flag = res.data.flag;
+        if (!flag) {
+          var toastText = '网络异常';
+          wx.showToast({
+            title: toastText,
+            icon: 'none',
+            duration: 2000
+          });
+        } else {
+          console.log(res.data.data)
+          if (res.data.data != null) {
+            that.globalData.username = res.data.data.username;
+            that.globalData.email = res.data.data.email;
+            that.globalData.phone = res.data.data.phone;
+          }
+        }
+      }
     })
   },
   globalData: {
     userInfo: null,
-    userInfo:null
+    userId:null,
+    username:null,
+    email:"",
+    phone:""
   }
 })

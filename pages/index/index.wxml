@@ -1,17 +1,19 @@
 
-
-
-  <scroll-view class="page" scroll-y="true"  bindscrolltolower="onLower" bindscroll="onScroll" style="height:{{windowHeight}}px;" >
-
-<van-tabs active="{{ active }}" sticky bind:change="onChange">
+<van-tabs active="{{ active }}" sticky bind:change="onChange" >
   <van-tab title="全部"></van-tab>
   <van-tab title="计算机"></van-tab>
   <van-tab title="金融"></van-tab>
-  <van-tab title="其他"></van-tab>       
+  <van-tab title="文学"></van-tab>
+  <van-tab title="科技"></van-tab>
+  <van-tab title="体育"></van-tab>               
 </van-tabs>
 
+  <scroll-view class="page" scroll-y="true"  bindscrolltolower="onLower" bindscroll="onScroll" style="height:{{windowHeight}}px;" >
+
+
+
    
-          <navigator url="/pages/translation/translation?content={{conf.content}}&describe={{conf.describe}}&language={{conf.language}}&territory={{conf.territory}}&deadline={{conf.deadline}}&title={{conf.title}}&subpackageid={{conf.id}}&count={{conf.count}}&section={{conf.section}}&taskid={{conf.taskid}}" wx:for="{{conferences}}" wx:for-item="conf" wx:key="enName" hover-class="weui-cell_active" >
+          <navigator url="/pages/translation/translation?subpackageid={{conf.id}}&taskid={{conf.taskid}}" wx:for="{{conferences}}" wx:for-item="conf" wx:key="enName" hover-class="weui-cell_active" >
          
        <block >
 <view class='item-container'>
@@ -22,7 +24,7 @@
               <view class='item-font'>
               <image class='icon' src='/pages/imge/index.png'></image>
               <p class='item-text'>翻译详情：</p>
-              <p class='item-text'>{{conf.language}}、{{conf.territory}}</p>
+              <p class='item-text'>{{conf.t_language}}、{{conf.territory}}</p>
               </view>
 
 <view class='item-font'>
@@ -47,9 +49,9 @@
 <view class='weui-panel__hd item-line'></view>
               <view class="weui-media-box__info">
 
-                <view class="weui-media-box__info__meta item-f" wx:if="{{conf.status==0}}">未完成</view>
-                 <view class="weui-media-box__info__meta item-f" wx:if="{{conf.status==1}}">完成</view>
-                  <view class="weui-media-box__info__meta item-f" wx:if="{{conf.status==-1}}">已过期</view>
+                <view class="weui-media-box__info__meta item-f" wx:if="{{conf.t_status==0&&conf.overdue!=1}}">未完成</view>
+                 <view class="weui-media-box__info__meta item-f" wx:if="{{conf.t_status==1&&conf.overdue!=1}}">完成</view>
+                  <view class="weui-media-box__info__meta item-f" wx:if="{{conf.overdue==1}}">已过期</view>
               </view>
 
 

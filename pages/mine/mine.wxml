@@ -8,7 +8,8 @@
           
         </view>
         <view class="weui-cell__bd">
-          <view>{{userInfo.nickName}}</view>
+          <view  wx:if="{{username == null}}">{{userInfo.nickName}}</view>
+          <view  wx:else>{{username}}</view>
           <view style="font-size: 13px;color: #888888;">欢迎您！</view>
         </view>
       </view>
@@ -28,19 +29,19 @@
 
     <view class="weui-cells__title">关于</view>
     <view class="weui-cells weui-cells_after-title">
-      <navigator url="/pages/mine/aboutus" class="weui-cell weui-cell_access">
+      <navigator url="/pages/mine/author" class="weui-cell weui-cell_access">
         <view class="weui-cell__bd">
           <view style="display: inline-block; vertical-align: middle">小程序作者</view>
         </view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </navigator>
-      <navigator url="/pages/mine/advice" class="weui-cell weui-cell_access">
+      <navigator url="" class="weui-cell weui-cell_access">
         <view class="weui-cell__bd">
           <view style="display: inline-block; vertical-align: middle">反馈</view>
         </view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </navigator>
-      <navigator url="/pages/mine/sponsor" class="weui-cell weui-cell_access">
+      <navigator url="" class="weui-cell weui-cell_access">
         <view class="weui-cell__bd">
           <view style="display: inline-block; vertical-align: middle">赞助</view>
         </view>

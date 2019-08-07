@@ -1,0 +1,19 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  
+  <view class="page__bd">
+    <view class="icon-box">
+      <icon type="info" size="93"></icon>
+      <view class="icon-box__ctn">
+        <view class="icon-box__title">Scholarly</view>
+        <view class="icon-box__desc">邮件：conference@zsn.cc</view>
+      </view>
+    </view>
+    <navigator target="miniProgram" open-type="navigate" app-id="wxab55adbdaabf555c" path="pages/index/index?appId=wx720555805b941f3e" extra-data="" version="release" bindsuccess="toMiniProgramSuccess">
+      <view class='weui-cell_bd'>联系我们</view>
+     
+    </navigator>
+    <view class="weui-cells weui-cells_after-title">
+      <image style="width:256px;height:256px;" src="../imge/gh_3f30c746ba34.png"></image>
+    </view>
+  </view>
+  </view>

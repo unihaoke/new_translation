@@ -1,4 +1,5 @@
-<van-nav-bar
+
+ <van-nav-bar
   title="任务"
   right-text="发布"
   bind:click-right="onClickRight"
@@ -8,9 +9,9 @@
   <van-tab title="我接受的"></van-tab>
 </van-tabs>
 
- <scroll-view class="page" scroll-y="true"  bindscrolltoupper="onUpper" bindscrolltolower="onLower" >
+ <scroll-view class="page" scroll-y="true"  bindscrolltoupper="onUpper" bindscroll="onScroll" bindscrolltolower="onLower" style="height:{{windowHeight}}px;" >
    
-          <navigator url="/pages/task/task_content?content={{conf.rewardInformation}}" wx:for="{{conferences}}" wx:for-item="conf" wx:key="enName" hover-class="weui-cell_active" >
+         <navigator url="/pages/translation/translation?subpackageid={{conf.id}}&taskid={{conf.taskid}}" wx:for="{{conferences}}" wx:for-item="conf" wx:key="enName" hover-class="weui-cell_active" >
          
        <block >
 <view class='item-container'>
@@ -21,7 +22,7 @@
               <view class='item-font'>
               <image class='icon' src='/pages/imge/index.png'></image>
               <p class='item-text'>翻译详情：</p>
-              <p class='item-text'>{{conf.language}}、{{conf.territory}}</p>
+              <p class='item-text'>{{conf.t_language}}、{{conf.territory}}</p>
               </view>
 
 <view class='item-font'>

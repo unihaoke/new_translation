@@ -207,6 +207,7 @@ Page({
     var userId = app.globalData.userId;
     var objectMultiArray=that.data.objectMultiArray;
     var multiIndex2=that.data.multiIndex2;
+    console.log(that.data.subdate)
     wx.uploadFile({
       url: 'http://127.0.0.1:8080/task/upload',
       filePath: that.data.filepath,

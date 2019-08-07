@@ -8,7 +8,9 @@ Page({
   data: {
     conferences:[],
     isEnd:false,
-    active: 1
+    active: 1,
+    windowHeight: 0,
+    windowWidth: 0,
   },
 
   /**
@@ -16,6 +18,15 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    // 设置窗口大小
+    wx.getSystemInfo({
+      success: (res) => {
+        that.setData({
+          windowHeight: res.windowHeight - 5,
+          windowWidth: res.windowWidth
+        })
+      }
+    })
     var userId = app.globalData.userId;
     var url = 'http://127.0.0.1:8080/translation/' + userId;
     that.loadConferences(url);
@@ -69,6 +80,7 @@ Page({
   onShareAppMessage: function () {
 
   },
+  onScroll: function () { },
   loadConferences: function (url) {
     console.log(app.globalData.userId + 'userId')
     var that = this;

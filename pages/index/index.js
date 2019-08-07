@@ -53,7 +53,10 @@ Page({
             isLower: false
           });
         }
-        var list = res.data.data.rows;
+        var list = null;
+        if(res.data.data!=null){
+          list = res.data.data.rows;
+        }
         console.log(list)
           //如果是加载的方式的话那么合并之前的数组
           if(that.data.isnow !=0){  
@@ -64,7 +67,7 @@ Page({
             showMore: false
           });
         
-        if (res.data.data.rows.length==0){
+        if (list==null||list.length==0){
            that.setData({
              showMore: false,
              isEnd: true
@@ -106,28 +109,20 @@ Page({
     var page = that.data.page;
     console.log(page)
     var url = 'http://localhost:8080/subpackage/search/'+page+'/'+count;
-    if (index == 0) {
-      url = 'http://localhost:8080/subpackage/search/'+page+'/'+count;
-      that.loadConferences(url)
+
+    switch(index){
+      case 0: url = 'http://localhost:8080/subpackage/search/' + page + '/' + count;
+      break;
+      case 1: url = 'http://localhost:8080/subpackage/search/' + page + '/' + count + '/计算机';
+      break;
+      case 2: url = 'http://localhost:8080/subpackage/search/' + page + '/' + count + '/金融';
+      break;
+      case 3: url = 'http://localhost:8080/subpackage/search/' + page + '/' + count + '/文学';
+      break;
+      case 4: url = 'http://localhost:8080/subpackage/search/' + page + '/' + count + '/科技';
+      break;
     }
-    if (index == 1) {
-      url = 'http://localhost:8080/subpackage/search/'+page+'/'+count+'/计算机'
-      that.loadConferences(url)
-    }
-    if (index == 2) {
-      url = 'http://localhost:8080/subpackage/search/' + page + '/' + count +'/金融'
-      that.loadConferences(url)
-    }
-    if (index == 3) {
-      wx.showActionSheet({
-        itemList: ['A', 'B', 'C'],
-        success: function (res) {
-          if (!res.cancel) {
-            console.log(res.tapIndex)
-          }
-        }
-      });
-    } 
+    that.loadConferences(url);
   },
   onPullDownRefresh: function () {
     var that = this;

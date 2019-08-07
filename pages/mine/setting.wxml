@@ -1,0 +1,58 @@
+<!--pages/mine/setting.wxml-->
+<!--pages/index/setting.wxml-->
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view class="weui-cells__title">设置个人信息</view>
+    <view class="weui-cells weui-cells_after-title">
+
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">*用户名</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" placeholder="{{username}}" bindinput="usernameinput" wx:if="{{username != null}}"/>
+          <input class="weui-input" placeholder="请输入用户名"  bindinput="usernameinput" wx:else/>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">*邮箱</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" placeholder="{{email}}"  bindinput="emailinput" wx:if="{{email != null}}" />
+          <input class="weui-input" placeholder="请输入邮箱" bindinput="emailinput" wx:else />
+        </view>
+      </view>
+
+
+<view class="weui-cell weui-cell_input weui-cell_vcode">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">*手机号</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入手机号" bindinput="phoneinput" />
+                </view>
+                <view class="weui-cell__ft">
+                    <view class="weui-vcode-btn">获取验证码</view>
+                </view>
+            </view>
+
+            <view class="weui-cell weui-cell_input weui-cell_vcode">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">验证码</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入验证码" />
+                </view>    
+        </view>
+
+   
+    </view>
+    <view class="weui-cells__title">*为必填项</view>
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="submit">确定</button>
+    </view>
+  </view>
+</view>

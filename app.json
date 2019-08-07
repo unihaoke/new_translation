@@ -7,7 +7,9 @@
     "pages/mine/mine",
     "pages/translation/translation",
     "pages/task/task_content",
-    "pages/task/post"
+    "pages/task/post",
+    "pages/mine/setting",
+    "pages/mine/author"
   ],
   "usingComponents": {
     "van-tab": "/dist/tab/index",
@@ -47,5 +49,6 @@
         "selectedIconPath": "pages/imge/mine_highlight.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
