@@ -9,7 +9,8 @@
     "pages/task/task_content",
     "pages/task/post",
     "pages/mine/setting",
-    "pages/mine/author"
+    "pages/mine/author",
+    "pages/translation/translation_list"
   ],
   "usingComponents": {
     "van-tab": "/dist/tab/index",

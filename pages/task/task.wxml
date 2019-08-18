@@ -11,7 +11,9 @@
 
  <scroll-view class="page" scroll-y="true"  bindscrolltoupper="onUpper" bindscroll="onScroll" bindscrolltolower="onLower" style="height:{{windowHeight}}px;" >
    
-         <navigator url="/pages/translation/translation?subpackageid={{conf.id}}&taskid={{conf.taskid}}" wx:for="{{conferences}}" wx:for-item="conf" wx:key="enName" hover-class="weui-cell_active" >
+         <navigator url="{{turl}}subpackageid={{conf.subpackageid}}&taskid={{conf.taskid}}&title={{conf.title}}&t_describe={{conf.t_describe}}&t_language={{conf.t_language}}&territory={{conf.territory}}&deadline={{conf.deadline}}&status={{conf.status}}" wx:for="{{conferences}}" wx:for-item="conf" wx:key="enName" hover-class="weui-cell_active">
+       
+        
          
        <block >
 <view class='item-container'>
@@ -27,15 +29,19 @@
 
 <view class='item-font'>
               <image class='icon' src='/pages/imge/index.png'></image>
-              <p class='item-text'>翻译字数：</p>
-              <p class='item-text'>{{conf.content.length}}</p>
+              <p class='item-text'  wx:if="{{change==1}}">翻译字数：</p>
+              <p class='item-text'  wx:if="{{change==1}}">{{conf.t_length}}</p>
+               <p class='item-text'  wx:if="{{change==0}}">完成个数：</p>
+              <p class='item-text'  wx:if="{{change==0}}">1</p>
               </view>
 
 <view class='item-font'>
               <image class='icon' src='/pages/imge/index.png'></image>
-              <p class='item-text'>剩余：</p>
-              <p class='item-text'>{{conf.count}}</p>
+              <p class='item-text' wx:if="{{change==1}}">翻译时间：</p>
+              <p class='item-text' wx:if="{{change==0}}">创建时间：</p>
+              <p class='item-text'>{{conf.createtime}}</p>
               </view>
+
 <view class='item-font'>
               <image class='icon' src='/pages/imge/index.png'></image>
               <p class='item-text'>截止时间：</p>
@@ -45,18 +51,19 @@
 
     
 <view class='weui-panel__hd item-line'></view>
-              <view class="weui-media-box__info">
+              <view class="weui-media-box__info" >
 
-                <view class="weui-media-box__info__meta item-f" wx:if="{{conf.status==0}}">未完成</view>
-                 <view class="weui-media-box__info__meta item-f" wx:if="{{conf.status==1}}">完成</view>
-                  <view class="weui-media-box__info__meta item-f" wx:if="{{conf.status==-1}}">已过期</view>
+                 <view class="weui-media-box__info__meta item-f" wx:if="{{conf.t_status==0&&conf.overdue!=1}}">未完成</view>
+                 <view class="weui-media-box__info__meta item-f" wx:if="{{conf.t_status==1&&conf.overdue!=1}}">完成</view>
+                 <view class="weui-media-box__info__meta item-f" wx:if="{{conf.overdue==1}}">已过期</view>
+                  <view class="weui-media-box__info__meta item-f" wx:if="{{conf.status==1}}">被采纳</view>
+                  <view class="weui-media-box__info__meta item-f" wx:if="{{conf.status==0}}">未被采纳</view>
               </view>
-
-
 </view>
+
+ 
             </block>
           </navigator>
-        
      
  <view class="weui-loadmore weui-loadmore_line" wx:if="{{isEnd}}">
             <view class="weui-loadmore__tips weui-loadmore__tips_in-line">我也是有底线的</view>

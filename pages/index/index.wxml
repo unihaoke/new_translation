@@ -35,8 +35,8 @@
 
 <view class='item-font'>
               <image class='icon' src='/pages/imge/index.png'></image>
-              <p class='item-text'>剩余：</p>
-              <p class='item-text'>{{conf.count}}</p>
+              <p class='item-text'>创建时间：</p>
+              <p class='item-text'>{{conf.createtime}}</p>
               </view>
 <view class='item-font'>
               <image class='icon' src='/pages/imge/index.png'></image>

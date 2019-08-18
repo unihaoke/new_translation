@@ -87,6 +87,7 @@ Page({
             duration: 2000
           });
         } else {
+          app.usermessage(userId);
           wx.showModal({
             content: '更新成功',
             showCancel: false,

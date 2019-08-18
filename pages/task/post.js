@@ -49,7 +49,8 @@ Page({
     isAgree: true,
     subdate:"",
     text:null,
-    title:""
+    title:"",
+    taskfilename:null
   },
 
   /**
@@ -168,11 +169,39 @@ Page({
       type: 'file',
       success(res) {
         const tempFilePaths = res.tempFiles
-        console.log(tempFilePaths);
-        that.setData({
-          filename: tempFilePaths[0].name,
-          filepath: tempFilePaths[0].path
-        });
+        wx.uploadFile({
+          url: 'http://127.0.0.1:8080/task/upload/file',
+          filePath: tempFilePaths[0].path,
+          name: 'file',
+          formData: {},
+          success: function (res) {
+            var data = JSON.parse(res.data);
+            var flag = data.flag;
+            console.log(res.data);
+            console.log(data.data)
+            if (!flag) {
+              var toastText = '上传失败';
+              wx.showToast({
+                title: toastText,
+                icon: 'none',
+                duration: 2000
+              });
+            } else {
+              that.setData({
+                taskfilename:data.data,
+                filename: tempFilePaths[0].name,
+                filepath: tempFilePaths[0].path
+              });
+              wx.showModal({
+                content: '提交成功',
+                showCancel: false,
+                success: function (res) {
+                }
+              });
+
+            }
+          }
+        })
       }
     })
   },
@@ -254,7 +283,8 @@ var that = this;
 var title = that.data.title;
 var filepath = that.data.filepath;
 var isAgree = that.data.isAgree;
-  if (title.length == 0 || title == null || title.match(/^[ ]*$/)){
+var taskFilename = that.data.taskfilename;
+  if (title == null || title.length == 0|| title.match(/^[ ]*$/)){
     wx.showToast({
       title: '标题不能为空',
       icon: 'none',
@@ -268,13 +298,64 @@ var isAgree = that.data.isAgree;
     });
   } else if (!isAgree){
     wx.showToast({
-      title: '请同意相关条款',
+      title: '您还未同意相关条款',
       icon: 'none',
       duration: 2000
     });
-}
+  } else if (taskFilename==null){
+    wx.showToast({
+      title: '请等待文件上传',
+      icon: 'none',
+      duration: 2000
+    });
+  }
 else{
-    that.postFile();
+    that.addTask();
 }
 },
+  addTask:function(){
+    var that = this;
+    var userId = app.globalData.userId;
+    var objectMultiArray = that.data.objectMultiArray;
+    var multiIndex2 = that.data.multiIndex2;
+    wx.request({
+      url: 'http://127.0.0.1:8080/task',
+      method: 'POST',
+      data: {
+        userid: userId,
+        t_describe: that.data.text,
+        title: that.data.title,
+        t_language: objectMultiArray[0][multiIndex2[0]].name,
+        territory: objectMultiArray[1][multiIndex2[1]].name,
+        deadline: that.data.subdate,
+        fileName:that.data.taskfilename
+      },
+      success: function (res) {
+        var flag = res.data.flag;
+        console.log(res.data);
+        if (!flag) {
+          var toastText = '提交失败';
+          wx.showToast({
+            title: toastText,
+            icon: 'none',
+            duration: 2000
+          });
+        } else {
+
+          wx.showModal({
+            content: '提交成功',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }
+            }
+          });
+
+        }
+      }
+    })
+  },
 })

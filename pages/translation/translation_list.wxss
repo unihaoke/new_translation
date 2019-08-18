@@ -1,0 +1,14 @@
+/* pages/translation/translation_list.wxss */
+.container {
+ height: 400rpx;
+ width: 1600rpx;
+}
+::-webkit-scrollbar {
+       width: 0;
+       height: 0;
+       color: transparent;
+    }
+    .item-text{
+      margin-right: 40px;
+      
+    }

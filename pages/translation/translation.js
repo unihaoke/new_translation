@@ -66,35 +66,58 @@ Page({
     var translator = that.data.userInfo.nickName;
     var translation = that.data.translation;
 
-    wx.request({
-      url: 'http://localhost:8080/translation',
-      method: 'POST',
-      data: {
-        userid: userid,
-        subpackageid: subpackageid,
-        translation: translation,
-        translator: translator,
-        product_id: that.data.translations.product_id
-      },
-      success: function(res) {
-        var flag = res.data.flag;
-        if (!flag) {
-          var toastText = '提交失败';
-          wx.showToast({
-            title: toastText,
-            icon: 'none',
-            duration: 2000
-          });
-        } else {
-          var toastText = '提交成功';
-          wx.showToast({
-            title: toastText,
-            icon: 'success',
-            duration: 2000
-          });
+
+    if (that.data.translations.t_status == 1 ) {
+      wx.showToast({
+        title: '该任务已完成',
+        icon: 'none',
+        duration: 2000
+      });
+    } else if (that.data.translations.overdue == 1) {
+      wx.showToast({
+        title: '该任务已过期',
+        icon: 'none',
+        duration: 2000
+      });
+    } else if (translation == null || translation.length == 0 || translation.match(/^[ ]*$/)) {
+      wx.showToast({
+        title: '译文不能为空',
+        icon: 'none',
+        duration: 2000
+      });
+    }else{
+      wx.request({
+        url: 'http://localhost:8080/translation',
+        method: 'POST',
+        data: {
+          userid: userid,
+          subpackageid: subpackageid,
+          translation: translation,
+          translator: translator,
+          product_id: that.data.translations.product_id,
+          content: that.data.translations.content,
+          t_length: that.data.translations.text_length
+        },
+        success: function (res) {
+          var flag = res.data.flag;
+          if (!flag) {
+            var toastText = '提交失败';
+            wx.showToast({
+              title: toastText,
+              icon: 'none',
+              duration: 2000
+            });
+          } else {
+            var toastText = '提交成功';
+            wx.showToast({
+              title: toastText,
+              icon: 'success',
+              duration: 2000
+            });
+          }
         }
-      }
-    })
+      })
+    }
 
   },
   auxiliaryTranslate: function() {

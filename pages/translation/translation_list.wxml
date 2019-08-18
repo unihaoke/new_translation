@@ -1,4 +1,4 @@
-<!--pages/task/task_content.wxml-->
+<!--pages/translation/translation_list.wxml-->
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
   <view class="page__bd">
     <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
@@ -12,7 +12,7 @@
                     <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
                 </view>
                 <view class="weui-cell__bd">标题：</view>
-                <view class="weui-cell__ft item-text">{{title}}</view>
+                <view class="weui-cell__ft item-text">{{conferences[0].title}}</view>
             </view>
 
    <view class="weui-cell">
@@ -20,7 +20,7 @@
                     <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
                 </view>
                 <view class="weui-cell__bd">翻译概述：</view>
-                <view class="weui-cell__ft item-text">{{t_describe}}</view>
+                <view class="weui-cell__ft item-text">{{conferences[0].t_describe}}</view>
             </view>
 
             <view class="weui-cell">
@@ -28,39 +28,63 @@
                      <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
                 </view>
                 <view class="weui-cell__bd">翻译详情：</view>
-                <view class="weui-cell__ft item-text">{{t_language}}、{{territory}}</view>
+                <view class="weui-cell__ft item-text">{{conferences[0].t_language}}、{{conferences[0].territory}}</view>
             </view>
-            
+            <view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
+                </view>
+                <view class="weui-cell__bd">翻译字数：</view>
+                <view class="weui-cell__ft item-text">{{conferences[0].t_length}}</view>
+            </view>
+
 <view class="weui-cell">
                 <view class="weui-cell__hd">
                     <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
                 </view>
-                <view class="weui-cell__bd">创建时间：</view>
+                <view class="weui-cell__bd">翻译状态：</view>
+                <view class="weui-cell__ft item-text">{{status}}</view>
+            </view>
+<view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
+                </view>
+                <view class="weui-cell__bd">翻译时间：</view>
                 <view class="weui-cell__ft item-text">{{conferences[0].createtime}}</view>
             </view>
-        
-
 
 <view class="weui-cell">
                 <view class="weui-cell__hd">
                     <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
                 </view>
                 <view class="weui-cell__bd">截止时间：</view>
-                <view class="weui-cell__ft item-text">{{deadline}}</view>
+                <view class="weui-cell__ft item-text">{{conferences[0].deadline}}</view>
             </view>
         </view>
 
 
-<view class="weui-cells__title">分包任务</view>
+
+
+
+    <view class="weui-cells__title">原文</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">{{conferences[0].content}}</view>
+      </view>
+    </view>
+
+
+
+<view class="weui-cells__title">译文</view>
 
  <navigator url="" wx:for="{{conferences}}" wx:for-item="conf" wx:key="enName" hover-class="weui-cell_active" >
 
  <view class="weui-panel">
-            <view class="weui-panel__hd">编号：{{conf.section}}</view>
+            <view class="weui-panel__hd">译者：{{conf.translator}}</view>
             <view class="weui-panel__bd">
                 <view class="weui-media-box weui-media-box_text">
                     
-                    <view class="weui-media-box__desc">{{conf.content}}</view>
+                    <view class="weui-media-box__desc">{{conf.translation}}</view>
                     <view class="weui-media-box__info">
                         <view class="weui-media-box__info__meta">{{conf.createtime}}</view>
                         <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</view>

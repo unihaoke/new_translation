@@ -57,7 +57,12 @@ Page({
         if(res.data.data!=null){
           list = res.data.data.rows;
         }
-        console.log(list)
+        if (list.length == 0 || list == null) {
+          that.setData({
+            showMore: false,
+            isEnd: true
+          });
+        }   
           //如果是加载的方式的话那么合并之前的数组
           if(that.data.isnow !=0){  
             list = that.data.conferences.concat(list);
@@ -66,13 +71,8 @@ Page({
             conferences: list,
             showMore: false
           });
-        
-        if (list==null||list.length==0){
-           that.setData({
-             showMore: false,
-             isEnd: true
-           });
-         }   
+       
+       
       }
     })
   },
@@ -99,8 +99,6 @@ Page({
       page: page
     });
     that.requestTask(that.data.index)
-    
-  
   },
   //根据不同的领域发送url
   requestTask:function(index){

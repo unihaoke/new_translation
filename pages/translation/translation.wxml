@@ -108,7 +108,7 @@
         </view>
       </view>
 
-      <view class="weui-btn-area">
+      <view class="weui-btn-area" >
         <button class="weui-btn" type="primary" bindtap="submit">提交</button>
       </view>
     </view>
@@ -119,22 +119,7 @@
  
 
 
-    <view wx:if="{{is_Submission == 1}}">
-      <navigator url="" wx:for="{{translations}}" wx:for-item="conf" wx:key="enName" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <view class="weui-panel weui-panel_access">
-          <view class="weui-panel__bd">
-            <view class="weui-media-box ">
-              <view class="weui-media-box__title weui-media-box__title_in-text" style='color:#669933'>{{conf.userName}}</view>
-              <scroll-view class="container" scroll-y="true">
-                <view class="weui-form-preview__value">{{conf.translation}}</view>
-              </scroll-view>
-
-             
-            </view>
-          </view>
-        </view>
-      </navigator>
-    </view>
+   
 
 
 

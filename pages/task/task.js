@@ -11,6 +11,8 @@ Page({
     active: 1,
     windowHeight: 0,
     windowWidth: 0,
+    turl: "/pages/translation/translation_list?",
+    change:1
   },
 
   /**
@@ -109,16 +111,22 @@ Page({
     });
   },
   onUpper:function(){
-    var that = this;
-    that.loadConferences();
+    
   },
   onChange:function(event) {
     var that = this;
+    console.log(that.data.change)
+    var turl = "/pages/translation/translation_list?";
     var userId = app.globalData.userId;
     var url = 'http://127.0.0.1:8080/translation/' + userId;
     if (event.detail.index ==0){
       url = 'http://127.0.0.1:8080/task/' + userId;
+      turl = "/pages/task/task_content?";
     }
+    that.setData({
+      turl:turl,
+      change: event.detail.index
+    })
     that.loadConferences(url);
 
   },
