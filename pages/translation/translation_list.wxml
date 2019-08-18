@@ -77,24 +77,38 @@
 
 <view class="weui-cells__title">译文</view>
 
- <navigator url="" wx:for="{{conferences}}" wx:for-item="conf" wx:key="enName" hover-class="weui-cell_active" >
+ <view wx:for="{{conferences}}" wx:for-item="conf" wx:key="enName" hover-class="weui-cell_active" wx:for-index="index" >
 
  <view class="weui-panel">
-            <view class="weui-panel__hd">译者：{{conf.translator}}</view>
+            <view class="weui-panel__hd" ><text>译者：{{conf.translator}}</text>
+            <text decode='true'>&nbsp;&nbsp;&nbsp;{{conf.createtime}}</text></view>
+            
             <view class="weui-panel__bd">
-                <view class="weui-media-box weui-media-box_text">
-                    
+
+                <!-- <view class="weui-media-box weui-media-box_text">                
                     <view class="weui-media-box__desc">{{conf.translation}}</view>
                     <view class="weui-media-box__info">
                         <view class="weui-media-box__info__meta">{{conf.createtime}}</view>
                         <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</view>
                     </view>
-                </view>
+                </view> -->
+    
+<view class='bg-white marginTop10 vertical'>
+  <text class="pay-hint-content {{conf.check?'ellipsis':'unellipsis'}}" wx:if="{{conf.fold}}">{{conf.translation}}</text>
+  <text class="pay-hint-content-none" wx:if="{{!conf.fold}}">{{conf.translation}}</text>
+  <view style="vertical-align: middle;width:40px; height: 40px;text-align:center;" wx:if="{{!conf.fold}}"></view>
+  <view class='bg-white-ellipsis' bindtap='ellipsis' wx:if="{{conf.fold}}" data-index="{{index}}">
+    <image class='img-ellipsis' style="vertical-align: middle;width:40px; height: 40px;text-align:center;" src="{{conf.check?'/pages/imge/Expand.png':'/pages/imge/Collapse.png'}}"></image>
+  </view>
+</view>
+
+
+
             </view>
         </view>
 
 
-</navigator>
+</view>
 
 
 

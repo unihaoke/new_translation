@@ -7,7 +7,9 @@ Page({
   data: {
     subpackageId: null,
     conferences: [],
-    status:null
+    status:null,
+    ellipsis: true, // 文字是否收起，默认收起
+    index:0
   },
 
   /**
@@ -89,11 +91,34 @@ Page({
             duration: 20001
           });
         } else {
+
+          list.forEach(function (item, index) {
+            console.log(item.translation.length)
+            if (item.translation.length>90){
+              list[index].check=true;
+              list[index].fold=true;
+            }else{
+              list[index].check = false;
+              list[index].fold = false;
+            }    
+             })
           that.setData({
             conferences: list
           });
         }
       }
+    })
+  },
+  /**
+  * 收起/展开按钮点击事件
+  */
+  ellipsis: function (event) {
+    var that = this;
+    var value = !that.data.conferences[event.currentTarget.dataset.index].check;
+    var list = that.data.conferences;
+    list[event.currentTarget.dataset.index].check = value;
+    this.setData({
+      conferences: list
     })
   },
 })

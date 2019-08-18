@@ -12,3 +12,32 @@
       margin-right: 40px;
       
     }
+    
+.pay-hint-content{
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #888;
+  display: -webkit-box;
+  -webkit-box-orient:vertical;
+  text-overflow: ellipsis;
+ overflow:hidden; /*  通过以上五行实现收缩功能 */
+}
+.ellipsis{
+  -webkit-line-clamp:4; /* 最多显示4行 */
+  /* opacity: 1 透明度75% */
+}
+.unellipsis{
+  -webkit-line-clamp:0; /* 全部显示 */
+  /* opacity: 1 不透明 */
+}
+.pay-hint-content-none{
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #888;
+  display: -webkit-box;
+  -webkit-box-orient:vertical;
+}
