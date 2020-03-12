@@ -7,11 +7,15 @@ Page({
   data: {
     conferences:[],
     taskid: "",
-    title:null,
-    t_language:null,
-    territory:null,
-    deadline:null,
-    t_describe:null,
+    title: null,
+    t_language: null,
+    territory: null,
+    deadline: null,
+    t_describe: null,
+    createtime: null,
+    content: null,
+    t_length: 0,
+    token:null
   },
 
   /**
@@ -25,7 +29,11 @@ Page({
       t_language: options.t_language,
       territory: options.territory,
       deadline: options.deadline,
-      t_describe: options.t_describe
+      t_describe: options.t_describe,
+      createtime: options.createtime,
+      content: options.content,
+      t_length: options.t_length,
+      jwt: wx.getStorageSync("jwt")
     })
     that.loadConferences();
   },
@@ -34,14 +42,15 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    var that = this;
+    that.loadConferences();
   },
 
   /**
@@ -84,6 +93,9 @@ Page({
     wx.request({
       url: 'http://127.0.0.1:8080/subpackage/task/' + taskid,
       method:'GET',
+      header: {
+        'Authorization': 'Bearer ' + that.data.jwt
+      },
       data: {},
       success: function(res) {
         var list = res.data.data;

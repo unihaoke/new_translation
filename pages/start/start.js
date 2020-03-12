@@ -54,23 +54,7 @@ Page({
   bindGetUserInfo: function (e) {
     if (e.detail.userInfo) {
       //用户按了允许授权按钮
-      var that = this;
-      //插入登录的用户的相关信息到数据库
-      wx.request({
-        url: 'http://127.0.0.1:8080/user',
-        method: 'POST',
-        data: {
-          id: getApp().globalData.userId,
-          name: e.detail.userInfo.nickName,
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          //从数据库获取用户信息
-          console.log("插入小程序登录用户信息成功！");
-        }
-      });
+      var that = this; 
       //授权成功后，跳转进入小程序首页
       wx.switchTab({
         url: '/pages/index/index'

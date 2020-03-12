@@ -12,7 +12,8 @@ Page({
     windowHeight: 0,
     windowWidth: 0,
     turl: "/pages/translation/translation_list?",
-    change:1
+    change:1,
+    token: null
   },
 
   /**
@@ -25,12 +26,12 @@ Page({
       success: (res) => {
         that.setData({
           windowHeight: res.windowHeight - 5,
-          windowWidth: res.windowWidth
+          windowWidth: res.windowWidth,
+          jwt: wx.getStorageSync("jwt")
         })
       }
     })
-    var userId = app.globalData.userId;
-    var url = 'http://127.0.0.1:8080/translation/' + userId;
+    var url = 'http://127.0.0.1:8080/translation/';
     that.loadConferences(url);
   },
 
@@ -84,12 +85,13 @@ Page({
   },
   onScroll: function () { },
   loadConferences: function (url) {
-    console.log(app.globalData.userId + 'userId')
     var that = this;
-    var userId = app.globalData.userId;
     wx.request({
       url: url,
       method: 'GET',
+      header: {
+        'Authorization': 'Bearer ' + that.data.jwt
+      },
       data: {},
       success: function (res) {
         var list = res.data.data;
@@ -116,11 +118,10 @@ Page({
   onChange:function(event) {
     var that = this;
     console.log(that.data.change)
-    var turl = "/pages/translation/translation_list?";
-    var userId = app.globalData.userId;
-    var url = 'http://127.0.0.1:8080/translation/' + userId;
+    var turl = "/pages/translation/translation_list?&flag=0&";
+    var url = 'http://127.0.0.1:8080/translation/';
     if (event.detail.index ==0){
-      url = 'http://127.0.0.1:8080/task/' + userId;
+      url = 'http://127.0.0.1:8080/task/';
       turl = "/pages/task/task_content?";
     }
     that.setData({

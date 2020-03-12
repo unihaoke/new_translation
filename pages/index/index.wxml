@@ -49,8 +49,8 @@
 <view class='weui-panel__hd item-line'></view>
               <view class="weui-media-box__info">
 
-                <view class="weui-media-box__info__meta item-f" wx:if="{{conf.t_status==0&&conf.overdue!=1}}">未完成</view>
-                 <view class="weui-media-box__info__meta item-f" wx:if="{{conf.t_status==1&&conf.overdue!=1}}">完成</view>
+                <view class="weui-media-box__info__meta item-f" wx:if="{{conf.t_status==0}}">未完成</view>
+                 <view class="weui-media-box__info__meta item-f" wx:if="{{conf.t_status==1}}">完成</view>
                   <view class="weui-media-box__info__meta item-f" wx:if="{{conf.overdue==1}}">已过期</view>
               </view>
 

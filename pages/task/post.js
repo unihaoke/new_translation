@@ -50,13 +50,17 @@ Page({
     subdate:"",
     text:null,
     title:"",
-    taskfilename:null
+    taskfilename:null,
+    token:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.setData({
+      jwt: wx.getStorageSync("jwt")
+    })
     console.log(this.data.minDate)
 
   },
@@ -173,6 +177,9 @@ Page({
           url: 'http://127.0.0.1:8080/task/upload/file',
           filePath: tempFilePaths[0].path,
           name: 'file',
+          header: {
+            'Authorization': 'Bearer ' + that.data.jwt
+          },
           formData: {},
           success: function (res) {
             var data = JSON.parse(res.data);
@@ -233,7 +240,6 @@ Page({
   },
   postFile: function () {
     var that = this;
-    var userId = app.globalData.userId;
     var objectMultiArray=that.data.objectMultiArray;
     var multiIndex2=that.data.multiIndex2;
     console.log(that.data.subdate)
@@ -241,8 +247,10 @@ Page({
       url: 'http://127.0.0.1:8080/task/upload',
       filePath: that.data.filepath,
       name: 'file',
+      header: {
+        'Authorization': 'Bearer ' + that.data.jwt
+      },
       formData: {
-        userid: userId,
         t_describe:that.data.text,
         title:that.data.title,
         t_language: objectMultiArray[0][multiIndex2[0]].name,
@@ -315,14 +323,16 @@ else{
 },
   addTask:function(){
     var that = this;
-    var userId = app.globalData.userId;
     var objectMultiArray = that.data.objectMultiArray;
     var multiIndex2 = that.data.multiIndex2;
+    console.log(that.data.jwt);
     wx.request({
       url: 'http://127.0.0.1:8080/task',
       method: 'POST',
+      header: {
+        'Authorization': 'Bearer ' + that.data.jwt
+      },
       data: {
-        userid: userId,
         t_describe: that.data.text,
         title: that.data.title,
         t_language: objectMultiArray[0][multiIndex2[0]].name,

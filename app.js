@@ -12,6 +12,7 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         // var that = this;
         var code = res.code; //登录凭证
+        console.log(code)
         if (code) {
           //3.请求自己的服务器，解密用户信息 获取unionId等加密信息
           wx.request({
@@ -22,11 +23,13 @@ App({
             },
             success: function (data) {
               //4.解密成功后 获取自己服务器返回的结果
-              console.log(data.data.data)
-              if (data.data.code == 20000) {
+              console.log(data.data)
+              if (data.data.code == 200) {
                 console.log("用户id！" + data.data.data);
-                that.globalData.userId = data.data.data
-                that.usermessage(data.data.data);
+                wx.setStorageSync("jwt", data.data.data.token);
+                wx.setStorageSync("tokenHead", data.data.data.tokenHead);
+                // that.globalData.userId = data.data.data也不需要userId
+                // that.usermessage(data.data.data);暂时不需要获取用户信息
                 if (that.employIdCallback) {
                   that.employIdCallback(data.data.data);
                 }
@@ -96,6 +99,7 @@ App({
     userId:null,
     username:null,
     email:"",
-    phone:""
+    phone:"",
+    url:"http://111.230.49.54:8081/translation"
   }
 })

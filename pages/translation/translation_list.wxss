@@ -41,3 +41,12 @@
   display: -webkit-box;
   -webkit-box-orient:vertical;
 }
+.adopt{
+  margin-left: 80%;
+}
+.caina{
+  margin-left: 80%;
+  margin-bottom: 5%;
+  color: #FF4500;
+  font-size:15px;
+}

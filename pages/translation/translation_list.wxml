@@ -12,7 +12,7 @@
                     <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
                 </view>
                 <view class="weui-cell__bd">标题：</view>
-                <view class="weui-cell__ft item-text">{{conferences[0].title}}</view>
+                <view class="weui-cell__ft item-text">{{title}}</view>
             </view>
 
    <view class="weui-cell">
@@ -20,7 +20,7 @@
                     <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
                 </view>
                 <view class="weui-cell__bd">翻译概述：</view>
-                <view class="weui-cell__ft item-text">{{conferences[0].t_describe}}</view>
+                <view class="weui-cell__ft item-text">{{t_describe}}</view>
             </view>
 
             <view class="weui-cell">
@@ -28,14 +28,14 @@
                      <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
                 </view>
                 <view class="weui-cell__bd">翻译详情：</view>
-                <view class="weui-cell__ft item-text">{{conferences[0].t_language}}、{{conferences[0].territory}}</view>
+                <view class="weui-cell__ft item-text">{{t_language}}、{{territory}}</view>
             </view>
             <view class="weui-cell">
                 <view class="weui-cell__hd">
                     <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
                 </view>
                 <view class="weui-cell__bd">翻译字数：</view>
-                <view class="weui-cell__ft item-text">{{conferences[0].t_length}}</view>
+                <view class="weui-cell__ft item-text">{{t_length}}</view>
             </view>
 
 <view class="weui-cell">
@@ -50,7 +50,7 @@
                     <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
                 </view>
                 <view class="weui-cell__bd">翻译时间：</view>
-                <view class="weui-cell__ft item-text">{{conferences[0].createtime}}</view>
+                <view class="weui-cell__ft item-text">{{createtime}}</view>
             </view>
 
 <view class="weui-cell">
@@ -58,7 +58,7 @@
                     <image style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;" src='/pages/imge/index.png'></image>
                 </view>
                 <view class="weui-cell__bd">截止时间：</view>
-                <view class="weui-cell__ft item-text">{{conferences[0].deadline}}</view>
+                <view class="weui-cell__ft item-text">{{deadline}}</view>
             </view>
         </view>
 
@@ -69,7 +69,7 @@
     <view class="weui-cells__title">原文</view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
-        <view class="weui-cell__bd">{{conferences[0].content}}</view>
+        <view class="weui-cell__bd">{{content}}</view>
       </view>
     </view>
 
@@ -77,29 +77,27 @@
 
 <view class="weui-cells__title">译文</view>
 
- <view wx:for="{{conferences}}" wx:for-item="conf" wx:key="enName" hover-class="weui-cell_active" wx:for-index="index" >
+ <view wx:for="{{conferences}}" wx:for-item="conf" wx:key="index" hover-class="weui-cell_active" wx:for-index="index" >
 
  <view class="weui-panel">
             <view class="weui-panel__hd" ><text>译者：{{conf.translator}}</text>
-            <text decode='true'>&nbsp;&nbsp;&nbsp;{{conf.createtime}}</text></view>
+            <text decode='true'>&nbsp;&nbsp;&nbsp;{{conf.createtime}}</text>
             
+            </view>
             <view class="weui-panel__bd">
-
-                <!-- <view class="weui-media-box weui-media-box_text">                
-                    <view class="weui-media-box__desc">{{conf.translation}}</view>
-                    <view class="weui-media-box__info">
-                        <view class="weui-media-box__info__meta">{{conf.createtime}}</view>
-                        <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</view>
-                    </view>
-                </view> -->
     
 <view class='bg-white marginTop10 vertical'>
   <text class="pay-hint-content {{conf.check?'ellipsis':'unellipsis'}}" wx:if="{{conf.fold}}">{{conf.translation}}</text>
   <text class="pay-hint-content-none" wx:if="{{!conf.fold}}">{{conf.translation}}</text>
   <view style="vertical-align: middle;width:40px; height: 40px;text-align:center;" wx:if="{{!conf.fold}}"></view>
+
   <view class='bg-white-ellipsis' bindtap='ellipsis' wx:if="{{conf.fold}}" data-index="{{index}}">
     <image class='img-ellipsis' style="vertical-align: middle;width:40px; height: 40px;text-align:center;" src="{{conf.check?'/pages/imge/Expand.png':'/pages/imge/Collapse.png'}}"></image>
   </view>
+  <button class="adopt" size="mini" wx:if="{{flag==1}}" bindtap='adopt' data-index="{{index}}">
+  <text wx:if="{{conf.status==0}}">采纳</text>
+  </button>
+  <text class="caina"wx:if="{{conf.status==1}}">已采纳</text>
 </view>
 
 

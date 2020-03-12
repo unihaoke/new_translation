@@ -11,7 +11,7 @@
 
  <scroll-view class="page" scroll-y="true"  bindscrolltoupper="onUpper" bindscroll="onScroll" bindscrolltolower="onLower" style="height:{{windowHeight}}px;" >
    
-         <navigator url="{{turl}}subpackageid={{conf.subpackageid}}&taskid={{conf.taskid}}&title={{conf.title}}&t_describe={{conf.t_describe}}&t_language={{conf.t_language}}&territory={{conf.territory}}&deadline={{conf.deadline}}&status={{conf.status}}" wx:for="{{conferences}}" wx:for-item="conf" wx:key="enName" hover-class="weui-cell_active">
+         <navigator url="{{turl}}subpackageid={{conf.subpackageid}}&taskid={{conf.taskid}}&title={{conf.title}}&t_describe={{conf.t_describe}}&t_language={{conf.t_language}}&territory={{conf.territory}}&deadline={{conf.deadline}}&status={{conf.status}}&content={{conf.content}}&createtime={{conf.createtime}}&t_length={{conf.t_length}}" wx:for="{{conferences}}" wx:for-item="conf" wx:key="enName" hover-class="weui-cell_active">
        
         
          
@@ -53,8 +53,8 @@
 <view class='weui-panel__hd item-line'></view>
               <view class="weui-media-box__info" >
 
-                 <view class="weui-media-box__info__meta item-f" wx:if="{{conf.t_status==0&&conf.overdue!=1}}">未完成</view>
-                 <view class="weui-media-box__info__meta item-f" wx:if="{{conf.t_status==1&&conf.overdue!=1}}">完成</view>
+                 <view class="weui-media-box__info__meta item-f" wx:if="{{conf.t_status==0}}">未完成</view>
+                 <view class="weui-media-box__info__meta item-f" wx:if="{{conf.t_status==1}}">完成</view>
                  <view class="weui-media-box__info__meta item-f" wx:if="{{conf.overdue==1}}">已过期</view>
                   <view class="weui-media-box__info__meta item-f" wx:if="{{conf.status==1}}">被采纳</view>
                   <view class="weui-media-box__info__meta item-f" wx:if="{{conf.status==0}}">未被采纳</view>
@@ -65,8 +65,13 @@
             </block>
           </navigator>
      
- <view class="weui-loadmore weui-loadmore_line" wx:if="{{isEnd}}">
+ <view class="weui-loadmore" wx:if="{{showMore}}">
+            <view class="weui-loading"></view>
+            <view class="weui-loadmore__tips">正在加载</view>
+        </view>
+         <view class="weui-loadmore weui-loadmore_line" wx:if="{{isEnd}}"style="margin-bottom:45px; ">
             <view class="weui-loadmore__tips weui-loadmore__tips_in-line">我也是有底线的</view>
-        </view>   
-    
+        </view>    
   </scroll-view>
+ 
+    

@@ -20,8 +20,8 @@ Page({
     index:0,
     count:10, //每一页显示10条数据
     page:1, //默认第一页
-    isnow:0 // 判断是否是当下
-    
+    isnow:0, // 判断是否是当下
+    jwt:null
   },
  
   onLoad: function (options) {
@@ -32,7 +32,8 @@ Page({
       success: (res) => {
         that.setData({
           windowHeight: res.windowHeight - 5,
-          windowWidth: res.windowWidth
+          windowWidth: res.windowWidth,
+          jwt: wx.getStorageSync("jwt")
         })
         var url = 'http://localhost:8080/subpackage/search/1/10';
         that.loadConferences(url)
@@ -44,6 +45,9 @@ Page({
     wx.request({
       url: url,
       method: 'GET',
+      header:{
+        'Authorization':'Bearer '+that.data.jwt
+      },
       data: {},
       success: function (res) {
         if(that.data.isLower){
@@ -57,7 +61,8 @@ Page({
         if(res.data.data!=null){
           list = res.data.data.rows;
         }
-        if (list.length == 0 || list == null) {
+        console.log(list)
+        if (list == null||list.length == 0 ) {
           that.setData({
             showMore: false,
             isEnd: true
@@ -118,6 +123,8 @@ Page({
       case 3: url = 'http://localhost:8080/subpackage/search/' + page + '/' + count + '/文学';
       break;
       case 4: url = 'http://localhost:8080/subpackage/search/' + page + '/' + count + '/科技';
+      break;
+      case 5: url = 'http://localhost:8080/subpackage/search/' + page + '/' + count + '/体育';
       break;
     }
     that.loadConferences(url);

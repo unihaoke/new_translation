@@ -53,7 +53,7 @@
 
 <view class="weui-cells__title">分包任务</view>
 
- <navigator url="" wx:for="{{conferences}}" wx:for-item="conf" wx:key="enName" hover-class="weui-cell_active" >
+ <navigator url="/pages/translation/translation_list?subpackageid={{conf.id}}&flag=1&title={{title}}&t_describe={{t_describe}}&t_language={{t_language}}&territory={{territory}}&deadline={{deadline}}&status={{conf.t_status}}&createtime={{conf.createtime}}&t_length={{conf.text_length}}&content={{conf.content}}" wx:for="{{conferences}}" wx:for-item="conf" wx:key="enName" hover-class="weui-cell_active" >
 
  <view class="weui-panel">
             <view class="weui-panel__hd">编号：{{conf.section}}</view>
@@ -63,7 +63,8 @@
                     <view class="weui-media-box__desc">{{conf.content}}</view>
                     <view class="weui-media-box__info">
                         <view class="weui-media-box__info__meta">{{conf.createtime}}</view>
-                        <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</view>
+                        <view class="weui-media-box__info__meta weui-media-box__info__meta_extra" wx:if="{{conf.t_status==1}}">完成</view>
+                        <view class="weui-media-box__info__meta weui-media-box__info__meta_extra" wx:else>未完成</view>
                     </view>
                 </view>
             </view>

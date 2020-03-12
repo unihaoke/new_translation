@@ -111,6 +111,8 @@
       <view class="weui-btn-area" >
         <button class="weui-btn" type="primary" bindtap="submit">提交</button>
       </view>
+      <!--默认隐藏-->
+      <loading hidden="{{hiddenLoading}}">{{loadingtxt}}</loading>
     </view>
 
 
